@@ -1,11 +1,13 @@
 public class BulletSettings
 {
-    public float timeToLive;
-    public float speed;
+    public readonly float timeToLive;
+    public readonly float speed;
+    public SpaceshipCannon owner;
 
-    public BulletSettings(float timeToLive, float speed)
+    public BulletSettings(float timeToLive, float speed, SpaceshipCannon owner)
     {
-        this.speed = speed;
         this.timeToLive = timeToLive;
+        this.speed = speed;
+        this.owner = owner;
     }
 }

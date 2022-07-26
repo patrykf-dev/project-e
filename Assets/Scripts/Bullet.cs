@@ -8,11 +8,6 @@ public class Bullet : MonoBehaviour
     private float _timer;
     private Transform _transform;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
-
     private void Awake()
     {
         _transform = transform;
@@ -43,5 +38,21 @@ public class Bullet : MonoBehaviour
         }
 
         _timer += Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var layerCorrect = other.gameObject.layer == LayerMask.NameToLayer("Asteroid");
+
+        if (layerCorrect)
+        {
+            var asteroidObject = other.gameObject.GetComponent<Asteroid>();
+
+            if (asteroidObject != null)
+            {
+                asteroidObject.HandleHit(_settings.owner);
+                Destroy(gameObject);
+            }
+        }
     }
 }

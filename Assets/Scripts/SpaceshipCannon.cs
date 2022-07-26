@@ -26,8 +26,7 @@ public class SpaceshipCannon : MonoBehaviour
             var spaceshipTransform = transform;
             var position = spaceshipTransform.position + 0.5f * spaceshipTransform.up;
             var bullet = Instantiate(_bulletPrefab, position, spaceshipTransform.rotation);
-
-            var settings = new BulletSettings(2f, 4f);
+            var settings = new BulletSettings(2f, 4f, this);
             bullet.Initialize(settings);
             _timer = 0f;
         }

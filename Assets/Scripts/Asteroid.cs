@@ -11,4 +11,14 @@ public class Asteroid : MonoBehaviour
     {
         _shotsLeft = _shotsToDestroy;
     }
+
+    public void HandleHit(SpaceshipCannon owner)
+    {
+        _shotsLeft--;
+
+        if (_shotsLeft <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
