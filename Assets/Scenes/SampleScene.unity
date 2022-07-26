@@ -501,6 +501,7 @@ MonoBehaviour:
   _accelerationForce: 4
   _rotationForce: 1
   _maxVelocity: 2.5
+  _maxAngularVelocity: 120
 --- !u!212 &1166570106
 SpriteRenderer:
   m_ObjectHideFlags: 0
