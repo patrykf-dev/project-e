@@ -4,6 +4,8 @@ using UnityEngine;
 public class SpaceshipMovement : MonoBehaviour
 {
     [SerializeField]
+    private bool _isBeingSteered;
+    [SerializeField]
     private float _accelerationForce = 0.8f;
     [SerializeField]
     private float _rotationForce = 10f;
@@ -23,8 +25,11 @@ public class SpaceshipMovement : MonoBehaviour
 
     private void Update()
     {
-        _rotationInput = Input.GetAxis("Horizontal");
-        _accelerationInput = Input.GetAxis("Vertical");
+        if (_isBeingSteered)
+        {
+            _rotationInput = Input.GetAxis("Horizontal");
+            _accelerationInput = Input.GetAxis("Vertical");
+        }
     }
 
     private void FixedUpdate()
