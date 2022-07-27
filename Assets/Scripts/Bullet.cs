@@ -1,12 +1,13 @@
-using System;
-using TMPro;
+using Elympics;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : ElympicsMonoBehaviour, IUpdatable
 {
+    private readonly ElympicsFloat _timeAlive = new ElympicsFloat();
     private BulletSettings _settings;
-    private float _timer;
     private Transform _transform;
+    private bool _scheduleDestroy;
+    private bool _isInitialized;
 
     private void Awake()
     {
@@ -16,28 +17,34 @@ public class Bullet : MonoBehaviour
     public void Initialize(BulletSettings settings)
     {
         _settings = settings;
+        _isInitialized = true;
     }
 
-    private void Update()
+    public void ElympicsUpdate()
     {
-        HandleTtl();
-        UpdatePosition();
+        if (IsPredictableForMe && _isInitialized)
+        {
+            _timeAlive.Value += Time.deltaTime;
+
+            if (_timeAlive >= _settings.timeToLive)
+            {
+                ElympicsDestroy(gameObject);
+            }
+
+            if (_scheduleDestroy)
+            {
+                ElympicsDestroy(gameObject);
+                _scheduleDestroy = false;
+            }
+
+            UpdatePosition();
+        }
     }
 
     private void UpdatePosition()
     {
         var newPosition = _transform.position + _transform.up * (_settings.speed * Time.deltaTime);
         _transform.position = newPosition;
-    }
-
-    private void HandleTtl()
-    {
-        if (_timer > _settings.timeToLive)
-        {
-            Destroy(gameObject);
-        }
-
-        _timer += Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,7 +58,7 @@ public class Bullet : MonoBehaviour
             if (asteroidObject != null)
             {
                 asteroidObject.HandleHit(_settings.owner);
-                Destroy(gameObject);
+                _scheduleDestroy = true;
             }
         }
     }

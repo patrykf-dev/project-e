@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpaceshipCannon : ElympicsMonoBehaviour
 {
+    private const string BULLET_PREFAB_PATH = "SynchronizedPrefabs/Bullet";
     private float _timer;
 
     private void Update()
@@ -13,13 +14,14 @@ public class SpaceshipCannon : ElympicsMonoBehaviour
         }
     }
 
-    public void ProcessInput(bool shootInput)
+    public void ProcessInput(bool shootInput, int playerIndex)
     {
         if (shootInput && _timer >= 0.3f)
         {
             var spaceshipTransform = transform;
             var position = spaceshipTransform.position + 0.5f * spaceshipTransform.up;
-            var bullet = ElympicsInstantiate("SynchronizedPrefabs/Bullet", ElympicsPlayer.All).GetComponent<Bullet>();
+            var createdObject = ElympicsInstantiate(BULLET_PREFAB_PATH, ElympicsPlayer.FromIndex(playerIndex));
+            var bullet = createdObject.GetComponent<Bullet>();
             bullet.transform.position = position;
             bullet.transform.rotation = spaceshipTransform.rotation;
             var settings = new BulletSettings(2f, 4f, this);

@@ -13,8 +13,8 @@ namespace DefaultNamespace
         {
             RotationInput = Input.GetAxis("Horizontal");
             AccelerationInput = Input.GetAxis("Vertical");
-            ShootInput = Input.GetKeyDown(KeyCode.Space);
-            ShowScoreboardInput = Input.GetKeyDown(KeyCode.Tab);
+            ShootInput = Input.GetKey(KeyCode.Space);
+            ShowScoreboardInput = Input.GetKey(KeyCode.Tab);
         }
     }
 }

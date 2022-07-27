@@ -57,7 +57,7 @@ namespace DefaultNamespace
             }
 
             _movement.ProcessMovement(rotationInput, accelerationInput);
-            _cannon.ProcessInput(shootInput);
+            _cannon.ProcessInput(shootInput, _playerId);
         }
     }
 }
