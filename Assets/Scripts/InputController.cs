@@ -53,7 +53,6 @@ namespace DefaultNamespace
                 inputDeserializer.Read(out accelerationInput);
                 inputDeserializer.Read(out shootInput);
                 inputDeserializer.Read(out showScoreboardInput);
-                Debug.Log($"Received inputs from {gameObject.name}");
             }
 
             _movement.ProcessMovement(rotationInput, accelerationInput);

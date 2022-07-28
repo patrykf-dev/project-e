@@ -144,14 +144,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3625, y: 0.5175}
+    oldSize: {x: 0.62142855, y: 0.88714284}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3625, y: 0.5175}
+  m_Size: {x: 0.6, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &3165053744676126821
 MonoBehaviour:
@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151141b81c0a4d0eb0c62acaa9cb4e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 6281731869826656394, guid: 23dc6827d89359e46a66187e5395e5f7, type: 3}
 --- !u!114 &3165053744676126822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 4
+  networkId: 14
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0

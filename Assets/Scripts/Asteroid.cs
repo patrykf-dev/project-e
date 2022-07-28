@@ -1,7 +1,8 @@
 using System;
+using Elympics;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public class Asteroid : ElympicsMonoBehaviour
 {
     public event Action<Asteroid> OnShotDown; 
     
@@ -26,7 +27,7 @@ public class Asteroid : MonoBehaviour
         if (_shotsLeft <= 0)
         {
             OnShotDown?.Invoke(this);
-            Destroy(gameObject);
+            ElympicsDestroy(gameObject);
         }
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameName: Project E
   gameId: 3a9abe6e-91ed-4455-8304-d7e9dcd7da6c
-  gameVersion: 1
+  gameVersion: 0.0.1
   players: 2
   gameplayScene: Assets/Scenes/SampleScene.unity
   gameplaySceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
   prediction: 1
   predictionLimitInTicks: 8
   detailedNetworkLog: 0
-  mode: 1
+  mode: 2
   halfRemoteMode: 0
   useWebInHalfRemote: 0
   ipForHalfRemoteMode: 127.0.0.1

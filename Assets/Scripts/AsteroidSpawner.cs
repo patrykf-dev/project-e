@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
+using Elympics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
-    public class AsteroidSpawner : MonoBehaviour
+    public class AsteroidSpawner : ElympicsMonoBehaviour, IUpdatable
     {
-        [SerializeField]
-        private Asteroid _asteroidPrefab;
         [SerializeField]
         private SpriteRenderer _backgroundSprite;
 
@@ -16,18 +14,23 @@ namespace DefaultNamespace
         private const int ASTEROIDS_COUNT_CAP = 6;
 
         private readonly List<Asteroid> _spawnedAsteroids = new List<Asteroid>();
-        private float _timer;
+        private readonly ElympicsFloat _spawnTimer = new ElympicsFloat();
 
-        private void Update()
+        private const string ASTEROID_PREFAB_PATH = "SynchronizedPrefabs/Asteroid";
+
+        public void ElympicsUpdate()
         {
-            if (_timer >= 3f)
+            if (Elympics.IsServer)
             {
-                TrySpawningAsteroid();
-                _timer = 0f;
-            }
-            else
-            {
-                _timer += Time.deltaTime;
+                if (_spawnTimer >= 3f)
+                {
+                    TrySpawningAsteroid();
+                    _spawnTimer.Value = 0f;
+                }
+                else
+                {
+                    _spawnTimer.Value += Elympics.TickDuration;
+                }
             }
         }
 
@@ -47,7 +50,10 @@ namespace DefaultNamespace
             var randomX = Random.Range(-xBound, xBound);
             var randomY = Random.Range(-yBound, yBound);
             var asteroidPosition = new Vector3(randomX, randomY, 0f);
-            var asteroid = Instantiate(_asteroidPrefab, asteroidPosition, Quaternion.identity);
+
+            var asteroidObject = ElympicsInstantiate(ASTEROID_PREFAB_PATH, ElympicsPlayer.World);
+            asteroidObject.transform.position = asteroidPosition;
+            var asteroid = asteroidObject.GetComponent<Asteroid>();
             _spawnedAsteroids.Add(asteroid);
             asteroid.OnShotDown += RemoveAsteroid;
         }

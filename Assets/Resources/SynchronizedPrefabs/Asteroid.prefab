@@ -4898,6 +4898,8 @@ GameObject:
   - component: {fileID: 7175274386990138887}
   - component: {fileID: 7175274386990138886}
   - component: {fileID: 7175274386990138885}
+  - component: {fileID: 1662026333465620977}
+  - component: {fileID: 6894124555973759650}
   m_Layer: 6
   m_Name: Asteroid
   m_TagString: Untagged
@@ -4982,3 +4984,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotsToDestroy: 5
   _damageVfx: {fileID: 7175274386847395595}
+--- !u!114 &1662026333465620977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7175274386990138881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c2a3facb248ac8c1a599797c52dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceNetworkId: 0
+  networkId: 5
+  predictableFor:
+    playerIndex: -2
+  isUpdatableForNonOwners: 0
+  visibleFor:
+    playerIndex: -3
+  stateFrequencyStages:
+  - stageDurationInMiliseconds: 500
+    frequencyInMiliseconds: 30
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 200
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 1000
+    maxStageDurationInMiliseconds: 5000
+--- !u!114 &6894124555973759650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7175274386990138881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b709081092fa45a2b4aeaf1d001c9119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionConfig:
+    synchronizationEnabled: 1
+    tolerance: 0.01
+  rotationConfig:
+    synchronizationEnabled: 1
+    tolerance: 1
+  velocityConfig:
+    synchronizationEnabled: 1
+    tolerance: 0.01
+  angularVelocityConfig:
+    synchronizationEnabled: 1
+    tolerance: 1
+  dragConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  angularDragConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  inertiaConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  massConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  gravityScaleConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01

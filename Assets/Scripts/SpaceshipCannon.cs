@@ -1,32 +1,31 @@
 using Elympics;
-using UnityEngine;
 
-public class SpaceshipCannon : ElympicsMonoBehaviour
+public class SpaceshipCannon : ElympicsMonoBehaviour, IUpdatable
 {
     private const string BULLET_PREFAB_PATH = "SynchronizedPrefabs/Bullet";
-    private float _timer;
-
-    private void Update()
-    {
-        if (_timer < 0.3f)
-        {
-            _timer += Time.deltaTime;
-        }
-    }
+    private readonly ElympicsFloat _shootTimer = new ElympicsFloat();
 
     public void ProcessInput(bool shootInput, int playerIndex)
     {
-        if (shootInput && _timer >= 0.3f)
+        if (shootInput && _shootTimer >= 0.3f)
         {
             var spaceshipTransform = transform;
-            var position = spaceshipTransform.position + 0.5f * spaceshipTransform.up;
+            var position = spaceshipTransform.position + .7f * spaceshipTransform.up;
             var createdObject = ElympicsInstantiate(BULLET_PREFAB_PATH, ElympicsPlayer.FromIndex(playerIndex));
             var bullet = createdObject.GetComponent<Bullet>();
             bullet.transform.position = position;
             bullet.transform.rotation = spaceshipTransform.rotation;
             var settings = new BulletSettings(2f, 4f, this);
             bullet.Initialize(settings);
-            _timer = 0f;
+            _shootTimer.Value = 0f;
+        }
+    }
+
+    public void ElympicsUpdate()
+    {
+        if (_shootTimer < 0.3f)
+        {
+            _shootTimer.Value += Elympics.TickDuration;
         }
     }
 }
