@@ -18,7 +18,8 @@ GameObject:
   - component: {fileID: 3165053744676126823}
   - component: {fileID: 3165053744676126872}
   - component: {fileID: 3165053744676126873}
-  m_Layer: 0
+  - component: {fileID: 7453186046098684616}
+  m_Layer: 8
   m_Name: Spaceship1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 14
+  networkId: 25
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0
@@ -260,3 +261,15 @@ MonoBehaviour:
   gravityScaleConfig:
     synchronizationEnabled: 0
     tolerance: 0.01
+--- !u!114 &7453186046098684616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165053744676126831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c222b2ebc64d5e9fe3197d8c28fc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

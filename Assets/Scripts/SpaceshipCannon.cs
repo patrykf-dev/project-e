@@ -15,7 +15,7 @@ public class SpaceshipCannon : ElympicsMonoBehaviour, IUpdatable
             var bullet = createdObject.GetComponent<Bullet>();
             bullet.transform.position = position;
             bullet.transform.rotation = spaceshipTransform.rotation;
-            var settings = new BulletSettings(2f, 4f, this);
+            var settings = new BulletSettings(2f, 4f, (int) PredictableFor);
             bullet.Initialize(settings);
             _shootTimer.Value = 0f;
         }

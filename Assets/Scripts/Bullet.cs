@@ -24,7 +24,7 @@ public class Bullet : ElympicsMonoBehaviour, IUpdatable
     {
         if (IsPredictableForMe && _isInitialized)
         {
-            _timeAlive.Value += Time.deltaTime;
+            _timeAlive.Value += Elympics.TickDuration;
 
             if (_timeAlive >= _settings.timeToLive)
             {
@@ -49,17 +49,41 @@ public class Bullet : ElympicsMonoBehaviour, IUpdatable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var layerCorrect = other.gameObject.layer == LayerMask.NameToLayer("Asteroid");
+        var asteroidHit = other.gameObject.layer == LayerMask.NameToLayer("Asteroid");
+        var spaceshipHit = other.gameObject.layer == LayerMask.NameToLayer("Spaceship");
 
-        if (layerCorrect)
+        if (IsPredictableForMe)
         {
-            var asteroidObject = other.gameObject.GetComponent<Asteroid>();
-
-            if (asteroidObject != null)
+            if (asteroidHit)
             {
-                asteroidObject.HandleHit(_settings.owner);
-                _scheduleDestroy = true;
+                HandleAsteroidHit(other);
             }
+            else if (spaceshipHit)
+            {
+                HandleSpaceshipHit(other);
+            }
+        }
+    }
+
+    private void HandleSpaceshipHit(Collider2D other)
+    {
+        var spaceshipHealth = other.gameObject.GetComponent<SpaceshipHealth>();
+
+        if (spaceshipHealth != null)
+        {
+            spaceshipHealth.HandleHit(_settings.ownerId);
+            _scheduleDestroy = true;
+        }
+    }
+
+    private void HandleAsteroidHit(Collider2D other)
+    {
+        var asteroidObject = other.gameObject.GetComponent<Asteroid>();
+
+        if (asteroidObject != null)
+        {
+            asteroidObject.HandleHit(_settings.ownerId);
+            _scheduleDestroy = true;
         }
     }
 }
